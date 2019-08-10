@@ -1,0 +1,44 @@
+.link-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .link-button:hover,
+  .link-button:focus {
+  text-decoration: none;
+  }
+
+  h1{
+    color:red;
+  }
+
+#tbxZipCode {
+    width: 152px;
+}
+
+div.dealer-search input[type="text"] {
+    font-size: 2rem;
+    padding: .5rem .75rem;
+    font-family: "Open Sans",sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: visible;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.font-base, p, p.text__small, ul {
+  font-family: "Open Sans",sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1.4em;
+  color: #495057;
+  -o-animation-delay: 0.5s;
+  -ms-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
+}
