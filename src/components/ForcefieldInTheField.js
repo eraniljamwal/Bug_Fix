@@ -2,29 +2,25 @@ import React from 'react';
 //import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
-
+import Loading from './Loading';
 
 class ForcefieldInTheField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            "gallery": []
-        }
-    }
-
     componentDidMount() {
-       // console.log(this.props);
       this.props.dispatch(fetchPages(158));
     }
-        
-    componentDidUpdate(){
-
-    }
-
+            
     render() {        
         //console.log(this.props);
         let IntheSlidePhotos; //="";        
-        if(this.props.pages &&  this.props.pages.acf &&  this.props.pages.acf.gallery){
+        const { error, loading, pages } = this.props;
+        if (error) {
+            return <div>Error! {error.message}</div>;
+        }
+
+        if (loading) {
+            return <Loading />;
+        }
+        if(pages &&  pages.acf &&  pages.acf.gallery){
             //console.log(this.props.inthefieldAcf.gallery);
             IntheSlidePhotos = (this.props.pages.acf.gallery.map((page, index) => {
                 let column_class =  "grid "+page.column_class;

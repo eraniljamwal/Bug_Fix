@@ -2,21 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
+import Loading from './Loading';
 
 class HomePage extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         pages: [
-    //             {acf : [
-    //                 {
-    //                     slides :[]
-    //                 }
-    //             ]}
-    //         ]
-    //     }
-    // }
 
     componentDidMount() {
       this.props.dispatch(fetchPages(187));
@@ -31,7 +19,7 @@ class HomePage extends React.Component {
         }
     
         if (loading) {
-            return <div>Loading...</div>;
+            return <Loading />;
         }
         
         if(pages &&  pages.acf &&  pages.acf.slides){ 

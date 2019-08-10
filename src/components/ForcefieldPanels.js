@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
 import PagesHeading from './PagesHeading';
 import ReactHtmlParser from 'react-html-parser';
+import Loading from './Loading';
 
 class ForcefieldPanels extends React.Component {
     componentDidMount() {
@@ -17,9 +18,9 @@ class ForcefieldPanels extends React.Component {
         if (error) {
             return <div>Error! {error.message}</div>;
         }
-    
+        
         if (loading) {
-            return <div>Loading...</div>;
+            return <Loading />;
         }
         
         if(pages.acf){

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
 import ReactHtmlParser from 'react-html-parser';
 import {bindActionCreators} from 'redux';
+import Loading from './Loading';
 
 class ForcefieldContacts extends React.Component {
     
@@ -38,7 +39,7 @@ class ForcefieldContacts extends React.Component {
         }
     
         if (loading) {
-            return <div>Loading...</div>;
+            return <Loading />;
         }
        
         if(this.props.pages &&  this.props.pages.acf &&  this.props.pages.acf.sales_contact_block){

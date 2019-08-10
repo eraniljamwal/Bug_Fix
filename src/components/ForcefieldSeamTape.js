@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
 import PagesHeading from './PagesHeading';
 import ReactHtmlParser from 'react-html-parser';
+import Loading from './Loading';
 
 class ForcefieldSeamTape extends React.Component {
     componentDidMount() {
@@ -19,7 +20,7 @@ class ForcefieldSeamTape extends React.Component {
         }
     
         if (loading) {
-            return <div>Loading...</div>;
+            return <Loading />;
         }
         
         if(pages.acf){

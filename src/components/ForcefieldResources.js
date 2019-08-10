@@ -3,32 +3,30 @@ import React from 'react';
 import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
 import ResorceData  from './ResorceData';
-
+import Loading from './Loading';
 
 class ForcefieldResources extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         pages: [
-    //             {acf : [
-    //                 {
-    //                     resources :[]
-    //                 }
-    //             ]}
-    //         ]
-    //     }
-    // }
 
     componentDidMount() {
       this.props.dispatch(fetchPages(67));
     }
         
     render() {        
-        //console.log(this.props);
-
         let resourceData = '';
-        if(this.props.pages &&  this.props.pages.acf &&  this.props.pages.acf.resources){ 
-            resourceData = (this.props.pages.acf.resources.map((page, index) => {
+        const { error, loading, pages } = this.props;
+        //console.log(this.props.pageheading);
+        if (error) {
+            return <div>Error! {error.message}</div>;
+        }
+    
+        if (loading) {
+            return <Loading />;
+        }
+        
+
+        
+        if(pages &&  pages.acf &&  pages.acf.resources){ 
+            resourceData = (pages.acf.resources.map((page, index) => {
                 return  <ResorceData  {...page}  key={index} />
                 //return console.log(page.resource_category_name);
             }));
