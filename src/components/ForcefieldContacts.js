@@ -19,8 +19,6 @@ class ForcefieldContacts extends React.Component {
         this.props.fetchPages(404); 
     }
 
-    
-
     onInputChange(event){   
         if(this.props.pages.acf.sales_contact_block){            
             let city = event.target.value;
@@ -43,7 +41,8 @@ class ForcefieldContacts extends React.Component {
             return <div>Loading...</div>;
         }
        
-        if(pages.acf){
+        if(this.props.pages &&  this.props.pages.acf &&  this.props.pages.acf.sales_contact_block){
+            //console.log(this.props);
             let uniqueOptions = [...new Set(this.props.pages.acf.sales_contact_block.map(item => {
                 return "<option values='"+item.contact_state +"'>"+item.contact_state + "</option>" ; 
             } ))];

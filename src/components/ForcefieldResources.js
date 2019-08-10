@@ -24,16 +24,15 @@ class ForcefieldResources extends React.Component {
     }
         
     render() {        
-        console.log(this.props);
+        //console.log(this.props);
 
         let resourceData = '';
         if(this.props.pages &&  this.props.pages.acf &&  this.props.pages.acf.resources){ 
-            if(this.props.pages.acf){
-                resourceData = (this.props.pages.acf.resources.map((page, index) => {
-                    return  <ResorceData  {...page}  key={index} />
-                    //return console.log(page.resource_category_name);
-                }));
-            }
+            resourceData = (this.props.pages.acf.resources.map((page, index) => {
+                return  <ResorceData  {...page}  key={index} />
+                //return console.log(page.resource_category_name);
+            }));
+        
         }
 
         return (

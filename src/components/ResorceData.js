@@ -2,7 +2,7 @@ import React from 'react';
 import SingleResourceData from './SingleResourceData';
 
 const ResorceData = (props) => {
-    console.log(props);
+    //console.log(props);
     return(
         <section className={"resources-list "+props.rsrc_bckgrnd}>
             <div className="container pad">
