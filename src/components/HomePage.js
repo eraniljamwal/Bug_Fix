@@ -34,7 +34,7 @@ class HomePage extends React.Component {
             return <div>Loading...</div>;
         }
         
-        if(pages.acf){
+        if(pages &&  pages.acf &&  pages.acf.slides){ 
             slide_nav_link = (pages.acf.slides.map((slide, index) => {
                 return <li className={(slide.active_slide === true ) ? 'active' : ''} key={index}>
                             <a href={"#section"+index+"/"} >{null}</a>
