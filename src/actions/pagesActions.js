@@ -1,7 +1,7 @@
 //import axios from "axios";
-const site_url = 'http://wpstage.forcefield.gpbpittest.com/wp-json/wp/v2/pages/';
+const pagesUrl = 'http://wpstage.forcefield.gpbpittest.com/wp-json/wp/v2/pages/';
 function getPages(page_id=187) {
-  return fetch(site_url+page_id)
+  return fetch(pagesUrl+page_id)
     .then(handleErrors)
     .then(res => res.json());
 }
@@ -47,3 +47,5 @@ export const fetchPagesFailure = error => ({
   type: FETCH_PAGES_FAILURE,
   payload: { error }
 });
+
+

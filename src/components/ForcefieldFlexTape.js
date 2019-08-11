@@ -24,8 +24,7 @@ class ForcefieldFlexTape extends React.Component {
         }
         
         if(pages.acf){
-            pageData = pages.acf.content_editor
-            
+            pageData = pages.acf.content_editor            
         }
         
         return (
@@ -44,4 +43,4 @@ const mapStateToProps = state => ({
     error: state.pages.error
 });
   
-  export default connect(mapStateToProps)(ForcefieldFlexTape);
+export default connect(mapStateToProps)(ForcefieldFlexTape);

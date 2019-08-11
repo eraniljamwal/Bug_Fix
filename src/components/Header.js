@@ -1,16 +1,41 @@
 import React from 'react';
-import Logo from './Logo'
+import {connect} from 'react-redux';
 import NavBar from './NavBar';
 
-function Header(props){
-    //console.log(props);
-    return(
-        <React.Fragment>
-            <header>           
-                <Logo />
-                <NavBar onFilterCurrPage =  {props.onFilterCurrPage}/>            
-            </header>
-        </React.Fragment>
-    );
+class Header extends React.Component{
+    // componentDidMount() {
+    //     this.props.dispatch(fetchMisc(504));
+    // }
+
+    render() {
+        //console.log("header");
+        //console.log(this.props);
+        let footerBlock;
+        const { error, misc } = this.props;
+        //console.log(misc);
+        if (error) {
+            return <div>Error! {error.message}</div>;
+        }
+        
+        if(misc.acf){
+            footerBlock = <header>           
+                            <div className="logo">
+                                    <a href="#/">  <img className= "img-rounded" src={misc.acf.header_logo} alt="logo" /> </a>
+                            </div>   
+                            <NavBar />            
+                        </header>         
+        }
+
+        return(            
+            <React.Fragment>
+                {footerBlock}
+            </React.Fragment>
+        )
+    }
 }
-export default Header;
+const mapStateToProps = state => ({
+    misc: state.misc.misc,
+    error: state.misc.error
+});
+  
+export default connect(mapStateToProps)(Header);
