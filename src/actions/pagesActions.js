@@ -11,7 +11,7 @@ export function fetchPages(page_id=187) {
     dispatch(fetchPagesBegin());
     return getPages(page_id)
       .then(json => {
-        dispatch(fetchPagesSuccess(json));;
+        dispatch(fetchPagesSuccess(json));
         //console.log(json);
         return json;
       })
@@ -49,3 +49,35 @@ export const fetchPagesFailure = error => ({
 });
 
 
+const dealersUrl = 'http://wpstage.forcefield.gpbpittest.com/dealers.php?zip_code=';
+function getDealers(zip_code) {
+  console.log(dealersUrl+zip_code);
+  return   fetch(dealersUrl+zip_code).then(handleErrors)
+  .then(res => res.json());
+}
+
+
+export const FETCH_DEALERS_FAILURE =  "FETCH_DEALERS_FAILURE";
+export const FETCH_DEALERS_SUCCESS =  "FETCH_DEALERS_SUCCESS";
+
+export function findDealer(zip_code) {
+  return dispatch => {
+    return getDealers(zip_code).then(dealers => {
+        dispatch(fetchPagesSuccess(dealers));
+        //console.log(json);
+        return dealers;      
+    }).catch(error =>
+      dispatch(fetchDealersFailure(error))
+    );   
+  };
+}
+
+export const fetchDealersFailure = error => ({
+  type: FETCH_DEALERS_FAILURE,
+  payload: { error }
+});
+
+export const fetchDealersSuccess = dealers => ({
+  type: FETCH_DEALERS_SUCCESS,
+  payload: { dealers }
+});

@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import { Route} from 'react-router-dom';
-
 import '../assets/css/style.css';
 import '../assets/css/main.css'; 
-
-
 import Header from './Header';
 import Footer from './Footer';
 import HomePage from './HomePage';
