@@ -3,16 +3,10 @@ import {connect} from 'react-redux';
 import NavBar from './NavBar';
 
 class Header extends React.Component{
-    // componentDidMount() {
-    //     this.props.dispatch(fetchMisc(504));
-    // }
 
     render() {
-        //console.log("header");
-        //console.log(this.props);
         let footerBlock;
         const { error, misc } = this.props;
-        //console.log(misc);
         if (error) {
             return <div>Error! {error.message}</div>;
         }

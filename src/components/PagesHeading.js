@@ -4,7 +4,7 @@ import downArrow from '../assets/img/svg/down-arrow.svg';
 //import {Link} from 'react-router-dom';
 
 const PagesHeading = (props) => {
-    //console.log( downArrows );    
+    //console.log( props );    
     //let header_background, page = '';
     let header_background = '';
     if(props){

@@ -1,18 +1,13 @@
 import React from 'react';
-import {fetchMisc} from '../actions/miscActions';
 import {connect} from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
 
 class Footer extends React.Component{
-    componentDidMount() {
-        this.props.dispatch(fetchMisc(504));
-    }
+    
 
     render() {
-        //console.log(this.props);
         let footerBlock;
         const { error, misc } = this.props;
-        //console.log(misc);
         if (error) {
             return <div>Error! {error.message}</div>;
         }
@@ -39,7 +34,6 @@ class Footer extends React.Component{
         }
 
         return(
-            //console.log(props)
             
             <React.Fragment>
                 {footerBlock}

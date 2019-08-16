@@ -13,15 +13,25 @@ import ForcefieldInTheField from './ForcefieldInTheField';
 import ForcefieldResources from './ForcefieldResources';
 import FindAForcefieldDealer from './FindAForcefieldDealer';
 import ForcefieldContacts from './ForcefieldContacts';
+import { findMenus } from "../actions/menusActions";
+import {fetchMisc} from '../actions/miscActions';
+import { connect } from "react-redux";
+import {bindActionCreators} from 'redux';
 
 class  App extends Component {  
+  
+  componentDidMount(){
+    this.props.fetchMisc(504);
+    this.props.findMenus();
+  }
 
   render(){
-    
+    //console.log(this.props);
     return (      
       <div className="App">           
         <Header/>  
           <Route exact path="/"  component={HomePage}  />
+          <Route exact path="/home"  component={HomePage}  />
           <Route path="/forcefield-panels" component={ForcefieldPanels} />
           <Route path="/forcefield-seam-tape" component={ForcefieldSeamTape} /> 
           <Route path="/forcefield-corner-seal" component={ForcefieldCornerSeal} />
@@ -35,4 +45,15 @@ class  App extends Component {
     );
   }
 }
-export default App;
+
+const mapStateToProps = state => ({
+  pages: state.pages.pages,
+  loading: state.pages.loading,
+  error: state.pages.error,
+  menus: state.menus.menus
+});
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({fetchMisc, findMenus},dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,8 +1,7 @@
 import {
   FETCH_PAGES_BEGIN,
   FETCH_PAGES_SUCCESS,
-  FETCH_PAGES_FAILURE,
-  FETCH_DEALERS_SUCCESS
+  FETCH_PAGES_FAILURE
 } from "../actions/pagesActions";
 
 const initialState = {
@@ -52,14 +51,7 @@ export default function pageReducer(
         pages: []
       };
 
-    case FETCH_DEALERS_SUCCESS:
-      // All done: set loading "false".
-      // Also, replace the pages with the ones from the server
-      return {
-        ...state,
-        loading: false,
-        dealers: action.payload.dealers
-      };
+    
 
     default:
       // ALWAYS have a default case in a reducer

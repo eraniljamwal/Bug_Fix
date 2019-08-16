@@ -31,6 +31,10 @@ div.dealer-search input[type="text"] {
     margin: 0;
 }
 
+.dealer-search{
+  width: 250px!important
+}
+
 .font-base, p, p.text__small, ul {
   font-family: "Open Sans",sans-serif;
   font-weight: 400;
@@ -65,4 +69,27 @@ div.dealer-search input[type="text"] {
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
+}
+
+
+.ffButton {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: .7em .8em .6em;
+  margin-bottom: .25rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #fff;
+  background-color: #495057;
+  text-transform: capitalize;
+  border-radius: 4px;
+  width: 80px !important;
+  height: 38px !important;
+  font-family: "Open Sans",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.15;
+    margin: 0;
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from "react-redux";
-import { fetchPages, findDealer } from "../actions/pagesActions";
+import { fetchPages } from "../actions/pagesActions";
+import { findDealer } from "../actions/dealersActions";
 import {bindActionCreators} from 'redux';
+import Loading from './Loading';
 
 class ForcefieldSeamTape extends React.Component {
     
@@ -23,27 +25,47 @@ class ForcefieldSeamTape extends React.Component {
     }
     
     componentDidMount() {
-      this.props.fetchPages(213);
+        this.props.fetchPages(213);
     }
 
     render() {    
         const { title } = this.state;    
-        let pageHeading,pageSubHeading, pageData = '';
-        const { error, loading, pages } = this.props;
-        //console.log(this.props);
-        if (error) {
-            return <div>Error! {error.message}</div>;
+        let pageHeading,pageSubHeading, pageData, dealersResp = '';
+        const { pages, error, loading, dealers, deal_loading, deal_error } = this.props;
+        console.log(this.props);
+        if (error || deal_error) {
+            if(error){
+                return <div>Error! {error.message}</div>;
+            }else if(deal_error){
+                return <div>Error! {deal_error.message}</div>;
+            }
         }
     
-        if (loading) {
-            return <div>Loading...</div>;
+        if (loading || deal_loading) {
+            return <Loading />;
         }
         
-        if(pages.acf){
-            //console.log(pages.acf);
+
+        if(pages &&  pages.acf){
+            //console.log(this.props);
             pageHeading = pages.acf.heading;
             pageSubHeading = pages.acf.subhead;
-            pageData = pages.acf.content_editor;
+            pageData = pages.acf.content_editor            
+        }  
+
+
+        if(dealers && dealers.length > 0){
+            dealersResp = dealers.map((dlr,index)=>{
+                return  <div className="col-xs-12 col-md-4" key={index}>
+                            <div className="dealer">
+                                <p>{dlr.Company}</p>
+                                <p>{dlr.Address}</p>
+                                <p>{dlr.state}</p>
+                                <p>{dlr.ZipCode}</p>
+                                <p> Distance: {dlr.Miles}.</p>
+                            </div>
+                        </div> 
+            });
         } 
         
         return (
@@ -62,8 +84,8 @@ class ForcefieldSeamTape extends React.Component {
                                     <div className="col-xs-12 col-md-6">
                                         <div className="dealer-search">
                                             <label>Search By Zip Code</label>
-                                            <input name="zipcode" type="text" id="zipcode1" value={title}  />
-                                            <input type="submit" name="btnSearch" value="Go"  id="btnSearch" className="button" />
+                                            <input name="zipcode" type="text" id="tbxZipCode" value={title}  />
+                                            <input type="submit" name="btnSearch" value="Go"  id="btnSearch" className="ffButton" />
                                         </div>
                                         <span id="reqFVZipCode" style={{color:'Red',display:'none'}}>Zip Code value is required.</span>
                                         <span id="regExpFVZipCode" style={{color:'Red',display:'none'}}>Invalid Zip Code.</span>
@@ -72,23 +94,25 @@ class ForcefieldSeamTape extends React.Component {
                         </div>
                         <hr />
                         <div className="results">
-                            <div className="row">                                
+                            <div className="row">   
+                                {dealersResp}
                             </div>
                         </div>
                     </div>
                 </section>
-                {ReactHtmlParser(pageData)}
+                {ReactHtmlParser(pageData)}                
             </React.Fragment>
         )
     }
 }
 const mapStateToProps = state => ({
     pages: state.pages.pages,
-    pageheading: state.pages.pages.acf,
     loading: state.pages.loading,
     error: state.pages.error,
-    dealer: state.dealers
-});
+    dealers: state.dealers.dealers,
+    deal_loading: state.dealers.deal_loading,
+    deal_error: state.pages.deal_error,
+  });
   
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchPages, findDealer }, dispatch)
