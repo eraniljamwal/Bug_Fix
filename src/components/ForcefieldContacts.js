@@ -4,6 +4,7 @@ import { fetchPages } from "../actions/pagesActions";
 import ReactHtmlParser from 'react-html-parser';
 import {bindActionCreators} from 'redux';
 import Loading from './Loading';
+import SeoSettings from './SeoSettings';
 
 class ForcefieldContacts extends React.Component {
     
@@ -51,15 +52,16 @@ class ForcefieldContacts extends React.Component {
             optionsList = uniqueOptions.map(opt => {
                 return opt;
             })      
-            //console.log(pages.acf.heading);
+            console.log(pages.acf);
             pageHeading = pages.acf.heading;
-            pageData = pages.acf.content_editor
+            pageData = pages.acf.contact_editor
             general_inquiries_content = pages.acf.general_inquiries_content;
             contact_img = pages.acf.upload_contact_page_image;
         }   
         
         return (
             <React.Fragment>
+                <SeoSettings />
                 <section className="offset">
                     <div className="container pad">
                         <div className="row">
@@ -97,9 +99,6 @@ const mapStateToProps = state => ({
     loading: state.pages.loading,
     error: state.pages.error
 });
-
-
-
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchPages }, dispatch)

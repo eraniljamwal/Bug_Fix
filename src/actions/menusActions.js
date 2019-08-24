@@ -1,8 +1,6 @@
-//import axios from "axios";
-//const menusURL = 'http://wpstage.forcefield.gpbpittest.com/menus.php?zip_code=';
-const menusURL = 'http://wpstage.forcefield.gpbpittest.com/wp-json/menus/v1/menus/main-menu';
+import  * as Constants from '../Constants';
 function getMenus() {
-  return fetch(menusURL)
+  return fetch(Constants.MENUS_URL)
     .then(handleErrors)
     .then(res => res.json());
 }
@@ -30,20 +28,18 @@ function handleErrors(response) {
   return response;
 }
 
-export const FETCH_MENUS_BEGIN = "FETCH_MENUS_BEGIN";
-export const FETCH_MENUS_SUCCESS =  "FETCH_MENUS_SUCCESS";
-export const FETCH_MENUS_FAILURE =  "FETCH_MENUS_FAILURE";
+
 
 export const fetchMenusBegin = () => ({
-  type: FETCH_MENUS_BEGIN
+  type: Constants.FETCH_MENUS_BEGIN
 });
 
 export const fetchMenusSuccess = menus => ({
-  type: FETCH_MENUS_SUCCESS,
+  type: Constants.FETCH_MENUS_SUCCESS,
   payload: { menus }
 });
 
 export const fetchMenusFailure = error => ({
-  type: FETCH_MENUS_FAILURE,
+  type: Constants.FETCH_MENUS_FAILURE,
   payload: { error }
 });

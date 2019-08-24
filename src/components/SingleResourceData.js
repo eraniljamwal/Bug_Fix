@@ -4,7 +4,7 @@ const SingleResourceData = (props) => {
     //console.log(props);
     return (
         <div className="col-xs-6 col-md-3">
-            <a className="download-link" href={props.rsrc_link}>
+            <a className="download-link" href={(props.resource_document.filename === '' )? '#': props.resource_document.filename  }>
                 <img src={props.rsrc_image} alt={props.rsrc_name} width="600" height="780" />
                 {props.rsrc_name}
             </a>

@@ -1,8 +1,4 @@
-import {
-    FETCH_MISC_BEGIN,
-    FETCH_MISC_SUCCESS,
-    FETCH_MISC_FAILURE
-  } from "../actions/miscActions";
+import  * as Constants from '../Constants';
   
   const initialState = {
     misc: [],
@@ -16,7 +12,7 @@ import {
     action
   ) {
     switch (action.type) {
-      case FETCH_MISC_BEGIN:
+      case Constants.FETCH_MISC_BEGIN:
         // Mark the state as "loading" so we can show a spinner or something
         // Also, reset any errors. We're starting fresh.
         return {
@@ -25,7 +21,7 @@ import {
           error: null
         };
   
-      case FETCH_MISC_SUCCESS:
+      case Constants.FETCH_MISC_SUCCESS:
         // All done: set loading "false".
         // Also, replace the misc with the ones from the server
         return {
@@ -34,7 +30,7 @@ import {
           misc: action.payload.misc
         };
   
-      case FETCH_MISC_FAILURE:
+      case Constants.FETCH_MISC_FAILURE:
         // The request failed, but it did stop, so set loading to "false".
         // Save the error, and we can display it somewhere
         // Since it failed, we don't have misc to display anymore, so set it empty.

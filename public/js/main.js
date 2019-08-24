@@ -14,6 +14,7 @@
 ( function( global, factory ) {
 
 	"use strict";
+
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
@@ -15908,23 +15909,3 @@ $(window).scroll(function(){
   }
 });
 
-
-
-$(document).ready(function(){
-	$('a[data-rel^=lightcase]').lightcase({
-	  maxWidth: 1000,
-	  maxHeight: 1000,
-	});
-
-	$('.image-grid').packery({
-	  itemSelector: '.grid',
-	  gutter: 10,
-	});
-  });
-
-  $( window ).resize(function() {
-	lightcase.resize();
-	$('.image-grid').packery({
-	  gutter: 10,
-	});
-  });

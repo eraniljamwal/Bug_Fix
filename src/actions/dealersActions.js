@@ -1,8 +1,6 @@
-//import axios from "axios";
-//const dealersURL = 'http://wpstage.forcefield.gpbpittest.com/dealers.php?zip_code=';
-const dealersURL = 'http://localhost/forcefield/wp-json/wp/v2/dealers/';
+import  * as Constants from '../Constants';
 function getDealers(zip_code=0) {
-  return fetch(dealersURL+zip_code)
+  return fetch(Constants.DEALERS_URL+zip_code)
     .then(handleErrors)
     .then(res => res.json());
 }
@@ -31,20 +29,18 @@ function handleErrors(response) {
   return response;
 }
 
-export const FETCH_DEALERS_BEGIN = "FETCH_DEALERS_BEGIN";
-export const FETCH_DEALERS_SUCCESS =  "FETCH_DEALERS_SUCCESS";
-export const FETCH_DEALERS_FAILURE =  "FETCH_DEALERS_FAILURE";
+
 
 export const fetchDealersBegin = () => ({
-  type: FETCH_DEALERS_BEGIN
+  type: Constants.FETCH_DEALERS_BEGIN
 });
 
 export const fetchDealersSuccess = dealers => ({
-  type: FETCH_DEALERS_SUCCESS,
+  type: Constants.FETCH_DEALERS_SUCCESS,
   payload: { dealers }
 });
 
 export const fetchDealersFailure = error => ({
-  type: FETCH_DEALERS_FAILURE,
+  type: Constants.FETCH_DEALERS_FAILURE,
   payload: { error }
 });

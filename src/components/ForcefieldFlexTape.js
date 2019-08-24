@@ -5,6 +5,7 @@ import { fetchPages } from "../actions/pagesActions";
 import PagesHeading from './PagesHeading';
 import ReactHtmlParser from 'react-html-parser';
 import Loading from './Loading';
+import SeoSettings from './SeoSettings';
 
 class ForcefieldFlexTape extends React.Component {
     componentDidMount() {
@@ -29,6 +30,7 @@ class ForcefieldFlexTape extends React.Component {
         
         return (
             <React.Fragment>
+                <SeoSettings />
                 {/* <PagesHeading {...props} /> */}
                 <PagesHeading {...this.props.pageheading} /> 
                 {ReactHtmlParser(pageData)}

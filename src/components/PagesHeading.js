@@ -17,8 +17,8 @@ const PagesHeading = (props) => {
                 <div className="container invert">
                     <div className="row">
                         <div className="col-xs-12 col-md-8 col-md-offset-1">
-                            <h1 data-aos="fade-up" data-aos-delay="100">{props.heading}</h1>
-                            <h3 data-aos="fade-up" data-aos-delay="200">{props.subhead}</h3>
+                            <h1 data-aos="fade-up" data-aos-delay="100">{ReactHtmlParser(props.heading)}</h1>
+                            <h3 data-aos="fade-up" data-aos-delay="200">{ReactHtmlParser(props.subhead)}</h3>
                             <p data-aos="fade-up" data-aos-delay="300">{ReactHtmlParser(props.description)}</p>
                             { 
                                 props.heading_btn_url !== "" && props.heading_btn_lbl !== ''

@@ -1,9 +1,4 @@
-import {
-    FETCH_MENUS_BEGIN,
-    FETCH_MENUS_SUCCESS,
-    FETCH_MENUS_FAILURE
-  } from "../actions/menusActions";
-  
+import  * as Constants from '../Constants';  
   const initialState = {
     menus: [],
     loading: false,
@@ -16,7 +11,7 @@ import {
     action
   ) {
     switch (action.type) {
-      case FETCH_MENUS_BEGIN:
+      case Constants.FETCH_MENUS_BEGIN:
         // Mark the state as "loading" so we can show a spinner or something
         // Also, reset any errors. We're starting fresh.
         return {
@@ -25,7 +20,7 @@ import {
           error: null
         };
   
-      case FETCH_MENUS_SUCCESS:
+      case Constants.FETCH_MENUS_SUCCESS:
         // All done: set loading "false".
         // Also, replace the menus with the ones from the server
         return {
@@ -34,7 +29,7 @@ import {
           menus: action.payload.menus
         };
   
-      case FETCH_MENUS_FAILURE:
+      case Constants.FETCH_MENUS_FAILURE:
         // The request failed, but it did stop, so set loading to "false".
         // Save the error, and we can display it somewhere
         // Since it failed, we don't have menus to display anymore, so set it empty.

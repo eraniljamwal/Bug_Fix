@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { fetchPages } from "../actions/pagesActions";
 import ResorceData  from './ResorceData';
 import Loading from './Loading';
+import SeoSettings from './SeoSettings';
+import ReactHtmlParser from 'react-html-parser';
 
 class ForcefieldResources extends React.Component {
 
@@ -12,7 +14,7 @@ class ForcefieldResources extends React.Component {
     }
         
     render() {        
-        let resourceData = '';
+        let resourceData, pageData, pageSubhead, pageHeading = '';
         const { error, loading, pages } = this.props;
         //console.log(this.props.pageheading);
         if (error) {
@@ -23,29 +25,31 @@ class ForcefieldResources extends React.Component {
             return <Loading />;
         }
         
-
-        
         if(pages &&  pages.acf &&  pages.acf.resources){ 
+            pageData =  ReactHtmlParser(pages.acf.resource_content);
+            pageHeading =  ReactHtmlParser(pages.acf.heading);
+            pageSubhead =  ReactHtmlParser(pages.acf.subhead);
             resourceData = (pages.acf.resources.map((page, index) => {
                 return  <ResorceData  {...page}  key={index} />
-                //return console.log(page.resource_category_name);
-            }));
-        
+            }));        
         }
 
         return (
             <div> 
+                <SeoSettings />
                 <section className="offset">
                     <div className="container pad">
                         <div className="row">
                             <div className="col-xs-12">
-                                <h1>ForceField<sup className="reg">&reg;</sup> Resources</h1>
-                                <p>Download the latest detailed information to keep you up-to-date on the ForceField air & water barrier system including its lifetime limited warranty.</p>
+                                <h1>{pageHeading}</h1> 
+                                <p>{pageSubhead}</p>
                             </div>
                         </div>
                     </div>
                 </section>
-                {resourceData}              
+                {resourceData} 
+                {pageData} 
+                          
          </div>
         );
     }
@@ -60,35 +64,3 @@ const mapStateToProps = state => ({
   export default connect(mapStateToProps)(ForcefieldResources);
   
   
-//   import React from 'react';
-// import ResorceData from './ResorceData';
-
-
-// function ForcefieldResources(props){
-
-//     console.log(props.acf);
-//    // console.log(props.currPageData);
-//     //let slide = 1;
-//     let resourceData = (props.acf.resources.map((page, index) => {
-//         return  <ResorceData  {...page}  key={index} />
-//         //return console.log(page.resource_category_name);
-//     }));
-
-//     return (
-//         <div> 
-//                 <section className="offset">
-//                     <div className="container pad">
-//                         <div className="row">
-//                             <div className="col-xs-12">
-//                                 <h1>ForceField<sup className="reg">&reg;</sup> Resources</h1>
-//                                 <p>Download the latest detailed information to keep you up-to-date on the ForceField air & water barrier system including its lifetime limited warranty.</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </section>
-//                 {resourceData}              
-//         </div>
-//     )
-//   }
-     
-// export default ForcefieldResources;

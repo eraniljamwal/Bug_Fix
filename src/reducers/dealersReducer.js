@@ -1,8 +1,4 @@
-import {
-  FETCH_DEALERS_BEGIN,
-  FETCH_DEALERS_SUCCESS,
-  FETCH_DEALERS_FAILURE
-} from "../actions/dealersActions";
+import  * as Constants from "../Constants";
 
 const initialState = {
   dealers: [],
@@ -18,7 +14,7 @@ export default function miscReducer(
 
   //console.log(action)
   switch (action.type) {
-    case FETCH_DEALERS_BEGIN:
+    case Constants.FETCH_DEALERS_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
@@ -27,7 +23,7 @@ export default function miscReducer(
         deal_error: null
       };
 
-    case FETCH_DEALERS_SUCCESS:
+    case Constants.FETCH_DEALERS_SUCCESS:
       // All done: set loading "false".
       // Also, replace the misc with the ones from the server
       return {
@@ -36,7 +32,7 @@ export default function miscReducer(
         dealers: action.payload.dealers
       };
 
-    case FETCH_DEALERS_FAILURE:
+    case Constants.FETCH_DEALERS_FAILURE:
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
       // Since it failed, we don't have misc to display anymore, so set it empty.

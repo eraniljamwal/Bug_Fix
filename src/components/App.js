@@ -17,6 +17,8 @@ import { findMenus } from "../actions/menusActions";
 import {fetchMisc} from '../actions/miscActions';
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
+// import $ from 'jquery'; 
+// import '../assets/js/main.js'; 
 
 class  App extends Component {  
   

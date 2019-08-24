@@ -22,7 +22,7 @@ class NavBar extends React.Component{
         if (menus_loading) {
             return <Loading />;
         }   
-        console.log(menus.items);
+        //console.log(menus.items);
 
         let menuURL, fullURL, menuURL2, fullURL2 = '';
         return(

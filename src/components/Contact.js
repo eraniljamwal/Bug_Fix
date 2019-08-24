@@ -9,9 +9,6 @@ class Contact extends Component {
             } ))];
             console.log(uniqueOptions);
         }
-        // optionsList = uniqueOptions.map(opt => {
-        //     return opt;
-        // }) 
 
         return (
             <React.Fragment>

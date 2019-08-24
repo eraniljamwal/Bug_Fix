@@ -1,7 +1,6 @@
-//import axios from "axios";
-const pagesUrl = 'http://wpstage.forcefield.gpbpittest.com/wp-json/wp/v2/pages/';
+import  * as Constants from '../Constants';
 function getPages(page_id=187) {
-  return fetch(pagesUrl+page_id)
+  return fetch(Constants.PAGE_URL+page_id)
     .then(handleErrors)
     .then(res => res.json());
 }
@@ -29,22 +28,17 @@ function handleErrors(response) {
   return response;
 }
 
-export const FETCH_PAGES_BEGIN = "FETCH_PAGES_BEGIN";
-export const FETCH_PAGES_SUCCESS =  "FETCH_PAGES_SUCCESS";
-export const FETCH_PAGES_FAILURE =  "FETCH_PAGES_FAILURE";
-export const FETCH_CONTACT =  "FETCH_CONTACT";
-
 export const fetchPagesBegin = () => ({
-  type: FETCH_PAGES_BEGIN
+  type: Constants.FETCH_PAGES_BEGIN
 });
 
 export const fetchPagesSuccess = pages => ({
-  type: FETCH_PAGES_SUCCESS,
+  type: Constants.FETCH_PAGES_SUCCESS,
   payload: { pages }
 });
 
 export const fetchPagesFailure = error => ({
-  type: FETCH_PAGES_FAILURE,
+  type: Constants.FETCH_PAGES_FAILURE,
   payload: { error }
 });
 

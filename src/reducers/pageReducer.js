@@ -1,8 +1,4 @@
-import {
-  FETCH_PAGES_BEGIN,
-  FETCH_PAGES_SUCCESS,
-  FETCH_PAGES_FAILURE
-} from "../actions/pagesActions";
+import  * as Constants from '../Constants';
 
 const initialState = {
   pages: [],
@@ -20,7 +16,7 @@ export default function pageReducer(
  
 
   switch (action.type) {
-    case FETCH_PAGES_BEGIN:
+    case Constants.FETCH_PAGES_BEGIN:
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
@@ -29,7 +25,7 @@ export default function pageReducer(
         error: null
       };
 
-    case FETCH_PAGES_SUCCESS:
+    case Constants.FETCH_PAGES_SUCCESS:
       // All done: set loading "false".
       // Also, replace the pages with the ones from the server
       return {
@@ -38,7 +34,7 @@ export default function pageReducer(
         pages: action.payload.pages
       };
 
-    case FETCH_PAGES_FAILURE:
+    case Constants.FETCH_PAGES_FAILURE:
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
       // Since it failed, we don't have pages to display anymore, so set it empty.

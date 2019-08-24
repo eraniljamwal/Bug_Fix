@@ -5,6 +5,7 @@ import { fetchPages } from "../actions/pagesActions";
 import { findDealer } from "../actions/dealersActions";
 import {bindActionCreators} from 'redux';
 import Loading from './Loading';
+import SeoSettings from './SeoSettings';
 
 class ForcefieldSeamTape extends React.Component {
     
@@ -32,7 +33,7 @@ class ForcefieldSeamTape extends React.Component {
         const { title } = this.state;    
         let pageHeading,pageSubHeading, pageData, dealersResp = '';
         const { pages, error, loading, dealers, deal_loading, deal_error } = this.props;
-        console.log(this.props);
+        //console.log(this.props);
         if (error || deal_error) {
             if(error){
                 return <div>Error! {error.message}</div>;
@@ -62,7 +63,7 @@ class ForcefieldSeamTape extends React.Component {
                                 <p>{dlr.Address}</p>
                                 <p>{dlr.state}</p>
                                 <p>{dlr.ZipCode}</p>
-                                <p> Distance: {dlr.Miles}.</p>
+                                <p> Distance: {dlr.Miles} miles.</p>
                             </div>
                         </div> 
             });
@@ -70,6 +71,7 @@ class ForcefieldSeamTape extends React.Component {
         
         return (
             <React.Fragment>
+                <SeoSettings />
                 <section className="offset">
                     <div className="container pad">
                         <div className="row">
@@ -84,8 +86,8 @@ class ForcefieldSeamTape extends React.Component {
                                     <div className="col-xs-12 col-md-6">
                                         <div className="dealer-search">
                                             <label>Search By Zip Code</label>
-                                            <input name="zipcode" type="text" id="tbxZipCode" value={title}  />
-                                            <input type="submit" name="btnSearch" value="Go"  id="btnSearch" className="ffButton" />
+                                            <input name="zipcode" type="text" id="tbxZipCode1" value={title}  /> &nbsp;
+                                            <input type="submit" name="btnSearch" value="Go"  id="btnSearch" className="ffButton1" />
                                         </div>
                                         <span id="reqFVZipCode" style={{color:'Red',display:'none'}}>Zip Code value is required.</span>
                                         <span id="regExpFVZipCode" style={{color:'Red',display:'none'}}>Invalid Zip Code.</span>
