@@ -7,6 +7,8 @@ import Loading from './Loading';
 import SeoSettings from './SeoSettings';
 import ReactHtmlParser from 'react-html-parser';
 
+
+
 let  images = []; 
 class ForcefieldInTheField extends React.Component {
     componentDidMount() {
@@ -55,7 +57,7 @@ class ForcefieldInTheField extends React.Component {
     render() {
         const { photoIndex, isOpen } = this.state;
 
-            let IntheSlidePhotos, gallery_image, column_class, pageHeading, pageSubhead= ''; //="";        
+            let IntheSlidePhotos, gallery_image,  pageHeading, pageSubhead= ''; //="";        
             const { error, loading, pages } = this.props;
             if (error) {
                 return <div>Error! {error.message}</div>;
@@ -71,7 +73,7 @@ class ForcefieldInTheField extends React.Component {
                 IntheSlidePhotos = (this.props.pages.acf.gallery.map((page, index) => {
                     //let column_class =  "grid "+page.column_class;
 
-                    column_class =  "grid "+page.column_class;
+                    // column_class =  "grid "+page.column_class;
                     gallery_image = page.gallery_image;
                     pageHeading =  ReactHtmlParser(pages.acf.heading);
                     pageSubhead =  ReactHtmlParser(pages.acf.subhead);
@@ -82,15 +84,21 @@ class ForcefieldInTheField extends React.Component {
                     //return  "test"//console.log(this.state.images1)//<button type="button" onClick={() => this.onGalleryBtnClick(index)} key={index}>{images1}</button>;
                     //return <button type="button" onClick={() => this.setState({ isOpen: true, photoIndex: 1})}>
 
-                    return <a className={column_class} data-rel="lightcase:galleryCollection" 
-                    href={gallery_image} 
-                    style={{backgroundImage: `url(${gallery_image})`}} 
-                    title={page.location_name} 
-                    key={index} onClick={this.onGalleryBtnClick} alt={index}  >
-                    <div className="grid-overlay">
-                        <h2>{page.location_name}</h2>
-                    </div>
-                </a> 
+                    // return <a className={column_class+" masonry-item"}  href={gallery_image} 
+                    //         style={{backgroundImage: `url(${gallery_image})`}} 
+                    //         title={page.location_name} 
+                    //         key={index} onClick={this.onGalleryBtnClick} alt={index}  >
+                    //         <div className="grid-overlay">
+                    //             <h2>{page.location_name}</h2>
+                    //         </div>
+                    //     </a> 
+                    return <div class="masonry-item hvrbox" key={index}>
+                                <img src={gallery_image} alt={index} class="masonry-content" onClick={this.onGalleryBtnClick} />
+                                <div class="hvrbox-layer_top">
+                                  <div class="hvrbox-text">{page.location_name}</div>
+                                </div>
+                                
+                            </div>
                 
                 }));
             }
@@ -101,10 +109,10 @@ class ForcefieldInTheField extends React.Component {
                 <div className="container pad">
 
                     <div className="row">
-                        <div className="col-xs-12">
+                        <div className="col-xs-12 masonry-wrapper">
                                 <h1>{pageHeading}</h1> 
                                 <p>{pageSubhead}</p>
-                            <div className="image-grid clearfix">
+                            <div className="image-grid clearfix masonry">
                                 {IntheSlidePhotos}
                             </div>
 

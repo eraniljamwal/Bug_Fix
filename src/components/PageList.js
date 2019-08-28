@@ -21,7 +21,7 @@ class PageList extends React.Component {
 
     return (
       <div>
-        Hi {pages.id} {pages.date}
+        {pages.id} {pages.date}
       </div>
     );
   }

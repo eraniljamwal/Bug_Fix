@@ -10415,7 +10415,7 @@ return jQuery;
         }
 
         /* Force initial check if images should appear. */
-        $(document).ready(function() {
+        $(document).ready(function($) {
             update();
         });
 
@@ -15845,11 +15845,11 @@ $(function() {
 AOS.init();
 
 // ** Apply FitVids to embedded YouTube videos **
-$(document).ready(function(){
+$(document).ready(function($){
   $(".video-container").fitVids();
 });
 
-$(document).ready(function(){
+$(document).ready(function($){
   $('a[data-rel^=lightcase]').lightcase({
     maxWidth: 1000,
     maxHeight: 1000,

@@ -1,0 +1,13 @@
+.slider {
+	position: relative;
+	width: 100%;
+	height: 1000px;
+	overflow: hidden;
+}
+	
+.slider a.previousButton polygon, .nextButton polygon {
+			fill: #ffff;
+}
+.slider a.previousButton {
+	top: 60px;
+}

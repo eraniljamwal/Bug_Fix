@@ -11,9 +11,11 @@
  *
  * Date: 2017-03-20T18:59Z
  */
+//console.log("Hi");
 ( function( global, factory ) {
 
 	"use strict";
+
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
@@ -15908,3 +15910,30 @@ $(window).scroll(function(){
   }
 });
 
+
+jQuery(document).ready(function () {
+	jQuery('a[data-rel^=lightcase]').lightcase({
+		maxWidth: 1000,
+		maxHeight: 1000,
+	});
+
+	jQuery('.image-grid').packery({
+		itemSelector: '.grid',
+		gutter: 10,
+	});
+});
+
+jQuery(window).on('load', function() {
+	//console.log('All assets are loaded');
+	lightcase.resize();
+	jQuery('.image-grid').packery({
+		gutter: 10,
+	});
+})
+
+jQuery(window).resize(function () {
+	lightcase.resize();
+	jQuery('.image-grid').packery({
+		gutter: 10,
+	});
+});

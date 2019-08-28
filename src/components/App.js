@@ -4,7 +4,7 @@ import '../assets/css/style.css';
 import '../assets/css/main.css'; 
 import Header from './Header';
 import Footer from './Footer';
-import HomePage from './HomePage';
+import HomePage2 from './HomePage2';
 import ForcefieldPanels from './ForcefieldPanels';
 import ForcefieldSeamTape from './ForcefieldSeamTape';
 import ForcefieldCornerSeal from './ForcefieldCornerSeal';
@@ -18,7 +18,7 @@ import {fetchMisc} from '../actions/miscActions';
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 // import $ from 'jquery'; 
-// import '../assets/js/main.js'; 
+//import '../assets/js/main.js'; 
 
 class  App extends Component {  
   
@@ -32,8 +32,8 @@ class  App extends Component {
     return (      
       <div className="App">           
         <Header/>  
-          <Route exact path="/"  component={HomePage}  />
-          <Route exact path="/home"  component={HomePage}  />
+          <Route exact path="/"  component={HomePage2}  />
+          <Route exact path="/home"  component={HomePage2}  />
           <Route path="/forcefield-panels" component={ForcefieldPanels} />
           <Route path="/forcefield-seam-tape" component={ForcefieldSeamTape} /> 
           <Route path="/forcefield-corner-seal" component={ForcefieldCornerSeal} />
